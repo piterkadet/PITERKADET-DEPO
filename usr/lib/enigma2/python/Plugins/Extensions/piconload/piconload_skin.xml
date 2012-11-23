@@ -1,0 +1,110 @@
+<skin>
+     <screen name="piconloadicon" position="center,center" size="650,500" title="%s">
+        <widget name="menu" position="45,24" size="575,430" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button580x50.png"/>
+        <widget name="statusbar" position="40,470" size="590,20" font="Regular;18" />
+      </screen>
+     <screen name="Allpicon" position="center,center" size="650,500" title="%s" >
+        <widget name="menu" position="45,24" size="575,430" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button880x70.png"/>
+     </screen>
+     <screen name="picSymlink" position="center,center" size="650,500" title="%s" >
+        <widget name="menu" position="45,24" size="575,430" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button580x50.png"/>
+     </screen>
+     <screen name="whitepic" position="center,center" size="650,500" title="%s" >
+        <widget name="menu" position="45,14" size="575,430" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button580x50.png" />
+        <widget name="key_green" position="40,455" zPosition="1" size="250,30" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/green2.png" position="40,450" size="250,65" alphatest="on" />
+        <widget name="key_blue" position="380,455" zPosition="1" size="250,30" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/blue2.png" position="380,450" size="250,65" alphatest="on" />
+     </screen>
+     <screen name="whitedescription" position="100,100" size="1080,560" title="">
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/prewiev.png" position="0,0" size="1080,560" alphatest="on" /> 
+        <widget name="text" position="5,5" size="700,500" font="Regular;22" />
+     </screen>               
+     <screen name="blackpic" position="center,center" size="650,500" title="%s" >
+        <widget name="menu" position="45,14" size="575,430" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button580x50.png" />
+        <widget name="key_green" position="40,455" zPosition="1" size="250,30" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/green2.png" position="40,450" size="250,65" alphatest="on" />
+        <widget name="key_blue" position="380,455" zPosition="1" size="250,30" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/blue2.png" position="380,450" size="250,65" alphatest="on" />
+    </screen>
+    <screen name="blackdescription" position="100,100" size="1080,560" title="">
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/prewiev.png" position="0,0" size="1080,560" alphatest="on" /> 
+        <widget name="text" position="5,5" size="700,500" font="Regular;22" />
+    </screen>
+    <screen name="transparentpic" position="center,center" size="650,500" title="%s" >
+        <widget name="menu" position="45,14" size="575,430" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button580x50.png" />
+        <widget name="key_green" position="40,455" zPosition="1" size="250,30" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/green2.png" position="40,450" size="250,65" alphatest="on" />
+        <widget name="key_blue" position="380,455" zPosition="1" size="250,30" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/blue2.png" position="380,450" size="250,65" alphatest="on" />
+    </screen> 
+    <screen name="transparentdescription" position="100,100" size="1080,560" title="">
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/prewiev.png" position="0,0" size="1080,560" alphatest="on" /> 
+        <widget name="text" position="5,5" size="700,500" font="Regular;22" />
+    </screen> 
+    <screen name="oledpic" position="center,center" size="650,500" title="%s" >
+        <widget name="menu" position="45,14" size="575,430" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button580x50.png" />
+        <widget name="key_green" position="40,455" zPosition="1" size="250,30" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/green2.png" position="40,450" size="250,65" alphatest="on" />
+        <widget name="key_blue" position="380,455" zPosition="1" size="250,30" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/blue2.png" position="380,450" size="250,65" alphatest="on" />
+   </screen>
+   <screen name="oleddescription" position="100,100" size="1080,560" title="">
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/prewiev.png" position="0,0" size="1080,560" alphatest="on" /> 
+        <widget name="text" position="5,5" size="700,500" font="Regular;22" />
+   </screen>   
+    <screen name="otherpic" position="center,center" size="650,500" title="%s" >
+        <widget name="menu" position="45,14" size="575,430" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button580x50.png" />
+        <widget name="key_green" position="40,455" zPosition="1" size="250,30" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/green2.png" position="40,450" size="250,65" alphatest="on" />
+        <widget name="key_blue" position="380,455" zPosition="1" size="250,30" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/blue2.png" position="380,450" size="250,65" alphatest="on" />
+   </screen>     
+   <screen name="otherdescription" position="100,100" size="1080,560" title="">
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/prewiev.png" position="0,0" size="1080,560" alphatest="on" /> 
+        <widget name="text" position="5,5" size="700,500" font="Regular;22" />
+   </screen>        
+   <screen name="delpicon" position="center,center" size="650,420" title="%s" >
+        <widget name="menu" position="45,84" size="525,310" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button580x50.png"/>
+   </screen> 
+   <screen name="Console2" position="150,100" size="1070,425" title="Command execution..." >
+	<widget name="text" position="50,20" size="1000,375" font="Console;22" foregroundColor="#bab329" />
+   </screen>
+   <screen name="info" position="100,100" size="1080,560" title="Info:">
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/prewiev.png" position="0,0" size="1080,560" alphatest="on" /> 
+        <widget name="text" position="5,5" size="1070,350" font="Regular;22" />
+   </screen>
+   <screen name="SetpiconPath" position="center,center" size="560,320" title="%s" >
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/green.png" position="140,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/yellow.png" position="280,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/blue.png" position="420,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+	<widget render="Label" source="key_red" position="0,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+	<widget render="Label" source="key_green" position="140,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+	<widget name="config" position="20,50" size="520,250" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button540x25.png" />
+  </screen> 
+  <screen name="piconPath" position="center,center" size="560,320" title="%s">
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/green.png" position="140,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/yellow.png" position="280,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/blue.png" position="420,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+	<widget name="target" position="0,60" size="540,22" valign="center" font="Regular;22" />
+	<widget name="filelist" position="0,100" zPosition="1" size="560,220" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button540x25.png"/>
+	<widget render="Label" source="key_red" position="0,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+	<widget render="Label" source="key_green" position="140,0" size="140,40" zPosition="5" valign="center" halign="center" backgroundColor="red" font="Regular;21" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
+  </screen>
+  <screen name="pluginupgrade" position="center,center" size="650,500" title="%s" >
+        <widget name="menu" position="45,14" size="575,430" scrollbarMode="showOnDemand" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button580x50.png" />
+  </screen>
+  <screen name="helpinfo" position="100,100" size="1080,560" title="helpinfo">
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/prewiev.png" position="0,0" size="1080,560" alphatest="on" /> 
+        <widget name="text" position="5,5" size="1070,350" font="Regular;22" />
+  </screen> 
+  <screen name="SatellitesGen" position="center,center" size="500,470" title="Satellites.xml generator">
+        <widget name="key_red" position="30,0" zPosition="5" size="125,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="red" shadowColor="black" shadowOffset="-1,-1" />
+	<widget name="key_green" position="185,0" zPosition="5" size="125,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="green" shadowColor="black" shadowOffset="-1,-1" />
+	<widget name="key_yellow" position="310,0" zPosition="5" size="125,40" valign="center" halign="center" font="Regular;21" transparent="1" foregroundColor="yellow" shadowColor="black" shadowOffset="-1,-1" />
+	<widget name="list" position="0,60" scrollbarMode="showOnDemand" size="500,360" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/piconload/menu/button580x35.png" transparent="1" />
+	<widget render="Label" source="statustext" position="0,420" zPosition="1" size="500,50" font="Regular;20" halign="center" transparent="1"/>
+  </screen>                                                   
+</skin>      

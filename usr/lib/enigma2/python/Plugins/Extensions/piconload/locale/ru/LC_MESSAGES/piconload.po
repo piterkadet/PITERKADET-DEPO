@@ -1,0 +1,258 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tuxbox-enigma 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-24 19:44+0200\n"
+"PO-Revision-Date: 2012-02-27 22:19+0200\n"
+"Last-Translator: igorrrrr <ivan.q@mail.ru>\n"
+"Language-Team: Russian / enigma(c) Ukraine, Kiev>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Русский\n"
+"X-Poedit-Country: RUSSIA\n"
+"X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid "About Piconload Version %s"
+msgstr "Информация о плагине %s"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Delete all Picon Oled hdd"
+msgstr "Удаление Picon Oled с HDD"
+
+msgid "Delete all Picon Oled usb"
+msgstr "Удаление Picon Oled с USB"
+
+msgid "Delete all picon"
+msgstr "Удаление  пиконов"
+
+msgid "Delete all picon hdd"
+msgstr "Удаление  пиконов с HDD"
+
+msgid "Delete all picon usb"
+msgstr "Удаление  пиконов с USB"
+
+msgid "Download"
+msgstr "Загрузить"
+
+msgid "Download  picon Black reference"
+msgstr "Загрузка чёрных пиконов"
+
+msgid "Download 0ther picon reference"
+msgstr "Загрузка других пиконов"
+
+msgid "Download Picon 0led 96x64 picon reference"
+msgstr "Загрузка пиконов для дисплея 96x64  "
+
+msgid "Download picon Transparent reference"
+msgstr "Загрузка прозрачных пиконов"
+
+msgid "Download plugin PiconLoad"
+msgstr "Cкачать плагин PiconLoad"
+
+msgid "Download white picon reference"
+msgstr "Загрузка белых пиконов"
+
+msgid "Error in downloading INFO.text"
+msgstr "Внимание, не загружается INFO.text или нет сети"
+
+msgid ""
+"GUI needs a restart to apply the new piconpath\n"
+"Do you want to Restart the GUI now?"
+msgstr ""
+"Необходимо перезагрузить Энигму, чтобы применить новые piconpath\n"
+"Хотите перезагрузить Энигму сейчас?"
+
+msgid "Other picon"
+msgstr "Другие пиконы"
+
+msgid "Picon Black"
+msgstr "Пиконы чёрные"
+
+msgid "Picon Oled 96x64"
+msgstr "Пиконы 96x64 для дисплея"
+
+msgid "Picon Transparent"
+msgstr "Пиконы прозрачные"
+
+msgid "Picon White"
+msgstr "Пиконы белые"
+
+msgid "PiconProv"
+msgstr "Пиконы piconProv"
+
+msgid "PiconSat"
+msgstr "Пиконы piconSat"
+
+msgid "Piconload Menu"
+msgstr "Меню Piconload "
+
+msgid "Piconload for USB and HDD"
+msgstr "Загрузка пиконов на  USB или HDD"
+
+msgid "Plugin update"
+msgstr "Обнoвление плагина"
+
+msgid "Restart GUI now?"
+msgstr "Перезагрузить Энигму сейчас?"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Select path for picons"
+msgstr "Выбрать накопитель"
+
+msgid "Selekt picon"
+msgstr "Выбор пиконов"
+
+msgid "SetpiconPath"
+msgstr "Выбор накопителя"
+
+msgid "Setup Path for picon"
+msgstr "Накопители для сохранения пиконов"
+
+msgid "Symlink directory"
+msgstr "Создание Symlink"
+
+msgid "Symlink picon_oled on HDD"
+msgstr "Создание Symlink picon_oled на HDD"
+
+msgid "Symlink picon_oled on USB"
+msgstr "Создание Symlink picon_oled на USB"
+
+msgid "Symlink on HDD"
+msgstr "Создание Symlink на HDD"
+
+msgid "Symlink on USB"
+msgstr "Создание Symlink на USB"
+
+msgid "Update description"
+msgstr "Описание обновлённых пиконов"
+
+msgid "helpinfo"
+msgstr "Oтветы на вопросы"
+
+msgid "SkinSelekt"
+msgstr "Bыбор оболочки"
+
+msgid "piconload skin selekt"
+msgstr "Выбрать оболочку для Piconload"
+
+msgid "Standart"
+msgstr "Стандартный"
+
+msgid "miniTV"
+msgstr "МиниТВ"
+
+msgid "GUI needs a restart to apply a new skins"
+msgstr "Перезагрузитe Энигму для применения новой оболочки"
+
+msgid "SKRENS downloaded Successfull /tmp"
+msgstr "Скриншот создан и находится в /tmp"
+
+msgid "SKRENS downloaded UnSuccessfull /tmp"
+msgstr "Скриншот не создан и не находится в /tmp"
+
+msgid "Download menu - icon"
+msgstr "Выбор меню с иконками"
+
+msgid "Download menu - icon+miniTV"
+msgstr "Выбор меню с иконками+миниТВ"
+
+msgid "Apply"
+msgstr "Применить"
+
+msgid "Uncheck All"
+msgstr "Снять отметки"
+
+msgid "Now edit your satellites list!"
+msgstr "Теперь необходимо отредактировать список спутников!"
+
+msgid "Getting latest satellites list... It can take long time on slow internet connection!"
+msgstr "Получение последнего списка спутников... Это может занять некоторое время!"
+
+msgid "New satellites sucsessfully writen . Restart Enigma now"
+msgstr "Новый Satelites xml загружен. Перегрузите Энигму"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Enable ShootYourScreen :"
+msgstr "Включить ShootScreen:"
+
+msgid "Exit"
+msgstr "Выход"
+
+msgid "Format for screenshots :"
+msgstr "Формат Скриншота:"
+
+msgid "Grabbing Screenshot failed !!!"
+msgstr "Захват Скриншота удался!!!"
+
+msgid "Path for screenshots :"
+msgstr "Путь для Скриншота:"
+
+msgid "Picture size (width) :"
+msgstr "Размер изображения(ширина):"
+
+msgid "Quality of jpg picture :"
+msgstr "Качество JPG картинки:"
+
+msgid "Really close without saving settings?"
+msgstr "Действительно закрыть без сохранения настроек?"
+
+msgid "Reset ShootYourScreen settings to defaults?"
+msgstr "Сброс ShootScreen параметров по умолчанию?"
+
+msgid "Screenshot of :"
+msgstr "Скриншот:"
+
+msgid ""
+"Screenshot successfully saved as:\n"
+"%s"
+msgstr ""
+"Скриншоты успешно сохранены в:\n"
+"%s"
+
+msgid "ShootYourScreen for VU+ STB - %s"
+msgstr "ShootScreen для VU+STB - %s"
+
+msgid "Skin resolution"
+msgstr "Скин по resolution"
+
+msgid ""
+"Sorry, your device for screenshots is not writeable.\n"
+"\n"
+"Please choose another one."
+msgstr ""
+"К сожалению, устройство для снятия Скриншотов не записываемое\n"
+"\n"
+"Пожалуйста, выберите другое."
+
+msgid "Switch Help and Help long button :"
+msgstr "Включить кнопку Help длительным нажатием:"
+
+msgid "Timeout for info message :"
+msgstr "Тайм-аут для информационных сообщений:"
+
+msgid "make Screenshots with your VU+"
+msgstr "делать Скриншоты с ShootScreen"
+
+msgid ""
+"piconload Plugin %s\n"
+"Piconmaster Kiber12\n"
+"Pluginmaster Maigais\n"
+"Pluginmaster Technik\n"
+"thanks for the participation:\n"
+"RamasG(picon_oled)"
+msgstr ""
+"Плагин Piconload  %s\n"
+"Мастер пиконов Kiber12\n"
+"Мастер плагина Maigais\n"
+"Мастер плагина Technik\n"
+"Спасибо за дополнения :\n"
+"RamasG(picon_oled)"
+

@@ -1,0 +1,86 @@
+#filter WebSafe
+#from urllib import quote
+<div id="content_main" style="min-height: 500px;">
+	<div id="info">
+		<h3>Timerlist</h3>
+
+		<div id="toolbar-header">
+			<span id="toolbar">
+				<span id="timerbuttons">
+					<button id="timerbutton0" onclick="addTimer(); return false">Add Timer</button>
+					<button id="timerbutton1" onclick="cleanupTimer(); return false">Cleanup Timers</button>
+				</span>
+			</span>
+		</div>
+
+		<div style="height: 640px; overflow: auto;">
+		#for $timer in $timers
+			<div class="moviecontainer_main" id="$timer.begin-$timer.end">
+				<div class="moviecontainer_left">
+					<div style="padding: 3px;">
+						<div style="color: #176093; font-weight: bold;">
+							$timer.name
+						</div>
+						$timer.realbegin - $timer.realend
+						#if $timer.repeated != 0
+							<div>
+								Every
+							#set $flags=$timer.repeated
+							#set $timerDays=[]
+							#for $day in ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+								#if $flags&1
+									$timerDays.append($day)
+								#end if
+								#set $flags = $flags >> 1
+							#end for
+							#echo ', '.join($timerDays)
+							</div>
+						#end if
+						<div style="font-weight: bold;">
+							$timer.servicename
+						</div>
+					</div>
+					<div style="padding: 3px;">
+						$timer.description
+					</div>
+					<div style="padding: 3px;">
+						<span style="color: #7F8181; font-weight: bold;">
+							#if $timer.state == 0
+								waiting
+							#elif $timer.state == 2
+								running
+							#elif $timer.state == 3
+								finished
+							#end if
+						</span>
+					</div>
+				</div>
+				<div class="moviecontainer_right">
+					<div style="padding: 3px; text-align: right;">
+						<a href='#' onClick="editTimer('$timer.serviceref', '$timer.begin', '$timer.end');"><img src="../images/ico_edit.png" title="Edit Timer" border="0"></a>
+						<a href='#' onClick="deleteTimer('$timer.serviceref', '$timer.begin', '$timer.end');"><img src="../images/ico_delete.png" title="Delete Timer" border="0"></a>
+						<a href='#' onClick="toggleTimerStatus('$timer.serviceref', '$timer.begin', '$timer.end');">
+						#if $timer.disabled
+						<img id="img-$timer.begin-$timer.end" src="../images/ico_disabled.png" title="Enable Timer" border="0">
+						#else
+						<img id="img-$timer.begin-$timer.end" src="../images/ico_enabled.png" title="Disable Timer" border="0">
+						#end if
+						</a>
+					</div>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		#end for
+		</div>
+	</div>
+</div>
+
+<div id="editTimerForm"></div>
+
+<script>
+	\$('#timerbuttons').buttonset();
+    var reloadTimers = true;
+
+    \$('#editTimerForm').load('/ajax/edittimer');
+</script>
+#end filter
