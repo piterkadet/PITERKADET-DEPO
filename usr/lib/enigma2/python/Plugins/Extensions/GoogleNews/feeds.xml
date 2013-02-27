@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<feeds>
+
+    <feed>
+        <name>Свежие новости</name>
+        <url>http://news.google.com/news?pz=1&#38;cf=all&#38;ned=ru&#38;hl=ru&#38;output=rss</url>
+    </feed>
+    <feed>
+        <name>Спорт</name>
+        <url>http://news.google.com/news?pz=1&#38;cf=all&#38;ned=ru&#38;hl=ru&#38;topic=s&#38;output=rss</url>
+    </feed>
+    <feed>
+        <name>Мировые новости</name>
+        <url>http://news.google.com/news?pz=1&#38;cf=all&#38;ned=ru&#38;hl=ru&#38;topic=w&#38;output=rss</url>
+    </feed>
+    <feed>
+        <name>Бизнес</name>
+        <url>http://news.google.com/news?pz=1&#38;cf=all&#38;ned=ru&#38;hl=ru&#38;topic=b&#38;output=rss</url>
+    </feed>
+    <feed>
+        <name>Новостная лента</name>
+        <url>http://lenta.ru/rss/</url>
+    </feed>
+    <feed>
+        <name>Спутниковое телевидение</name>
+        <url>http://www.sat-expert.com/plugins/p47_rsssyn/rssfeed.php</url>
+    </feed>
+    <feed>
+        <name>Советский спорт</name>
+        <url>http://www.sovsport.ru/news_rss</url>
+    </feed>
+    <feed>
+        <name>Шоу-бизнес</name>
+        <url>http://news.google.com/news?pz=1&#38;cf=all&#38;ned=ru&#38;hl=ru&#38;topic=e&#38;output=rss</url>
+    </feed>
+    <feed>
+        <name>Здоровье</name>
+        <url>http://news.google.com/news?pz=1&#38;cf=all&#38;ned=ru&#38;hl=ru&#38;topic=m&#38;output=rss</url>
+    </feed>
+  
+</feeds>
