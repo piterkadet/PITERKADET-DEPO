@@ -1,2 +1,0 @@
-/bin/stfbcontrol he
-

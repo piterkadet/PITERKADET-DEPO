@@ -1,5 +1,0 @@
-<keymap>
-	<map context="GlobalActions">
-		<key id="KEY_SAT" mapto="showQuickSignal" flags="m" />
-	</map>
-</keymap>
