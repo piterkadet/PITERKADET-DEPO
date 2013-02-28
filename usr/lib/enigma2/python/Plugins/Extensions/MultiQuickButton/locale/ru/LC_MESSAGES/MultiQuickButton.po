@@ -1,0 +1,427 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-20 21:26+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: алекс <aaleks74@qip.ru>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid " long"
+msgstr " долгое нажатие"
+
+msgid "A/V Settings"
+msgstr "A/V настройки"
+
+msgid "About"
+msgstr "Опрограме"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Add Functions to MQB Key"
+msgstr "Добавить функцию"
+
+msgid "Add Plugins to MQB Key"
+msgstr "Добавить плагин"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Autostart"
+msgstr "Автостарт"
+
+msgid "Backup"
+msgstr "Бекап"
+
+msgid "Backup Settings..."
+msgstr "Бекап настроек ..."
+
+msgid "Backward <"
+msgstr "Назад <"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Channel"
+msgstr "Канал"
+
+msgid "Channel +"
+msgstr "Канал +"
+
+msgid "Channel -"
+msgstr "Канал -"
+
+msgid "Channel Selection"
+msgstr "Выбор канала"
+
+msgid "Channel list"
+msgstr "Список каналов"
+
+msgid "Channel zap (list) +"
+msgstr "Канал + (в списке)"
+
+msgid "Channel zap (list) -"
+msgstr "Канал - (в списке)"
+
+msgid "Channel zap +"
+msgstr "Канал вперед"
+
+msgid "Channel zap -"
+msgstr "Канал назад"
+
+msgid "Channels"
+msgstr "Каналы"
+
+msgid "Cool TV Guide"
+msgstr "Cool TV Guide"
+
+msgid "Cross Down"
+msgstr "Кнопка Вниз"
+
+msgid "Cross Left"
+msgstr "Влево"
+
+msgid "Cross Right"
+msgstr "Вправо"
+
+msgid "Cross Up"
+msgstr "Кнопка Вверх"
+
+msgid "DVDPlayer"
+msgstr "DVD Плеер"
+
+msgid "DeepStandby"
+msgstr "DeepStandby"
+
+msgid "Directory %s nonexistent."
+msgstr "Directory %s nonexistent."
+
+msgid "Dolby Digital downmix on/off"
+msgstr "Dolby Digital downmix вкл/выкл"
+
+msgid "END"
+msgstr "End"
+
+msgid "EXIT"
+msgstr "EXIT"
+
+msgid "Entry %s already exists."
+msgstr "Вступление% уже существует."
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Extension Selection"
+msgstr "Выбор плагинов"
+
+msgid "FastForward >>"
+msgstr "ускоренная перемотка вперед >>"
+
+msgid "Favourite channel 1"
+msgstr "Фаворитный канал 1"
+
+msgid "Favourite channel 2"
+msgstr "Фаворитный канал 2"
+
+msgid "Favourite channel 3"
+msgstr "Фаворитный канал 3"
+
+msgid "Favourite channel 4"
+msgstr "Фаворитный канал 4"
+
+msgid "Favourite channel 5"
+msgstr "Фаворитный канал 5"
+
+msgid "File %s nonexistent."
+msgstr "File %s nonexistent."
+
+msgid "Forward >"
+msgstr "Вперед >"
+
+msgid "Functions"
+msgstr "Функции"
+
+msgid "GUI Restart"
+msgstr "Перегрузить энигму"
+
+msgid "HELP"
+msgstr "Помощь"
+
+msgid "HOME"
+msgstr "HOME"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "InfoBar"
+msgstr "InfoBar"
+
+msgid "InfoBar Audio Selection"
+msgstr "Выбор аудио"
+
+msgid "InfoBar EPG"
+msgstr "Показ EPG"
+
+msgid "InfoBar EventInfoPlugins"
+msgstr "InfoBar EventInfoPlugins"
+
+msgid "InfoBar EventView"
+msgstr "InfoBar EventView"
+
+msgid "InfoBar Instant Record"
+msgstr "InfoBar Instant Record"
+
+msgid "InfoBar Multi EPG"
+msgstr "Показ Multi EPG"
+
+msgid "InfoBar Record"
+msgstr "InfoBar Record"
+
+msgid "InfoBar Show Movies"
+msgstr "InfoBar Show Movies"
+
+msgid "InfoBar Show Radio"
+msgstr "InfoBar Show Radio"
+
+msgid "InfoBar Show Tv"
+msgstr "InfoBar Show Tv"
+
+msgid "List of Bouquets"
+msgstr "Список фаворитов"
+
+msgid "MQB Functions and Plugins"
+msgstr "MQB Functions and Plugins"
+
+msgid "Main menu"
+msgstr "Главное меню"
+
+msgid "MediaPlayer"
+msgstr "Media Player"
+
+msgid "Mount info"
+msgstr "Mount info"
+
+msgid "Move PIP"
+msgstr "Перемещение PIP"
+
+msgid "Multi QuickButton settings"
+msgstr "Настройки Multi QuickButton"
+
+msgid "Multi Quickbutton"
+msgstr "Быстрые кнопки"
+
+msgid "No valid function file found"
+msgstr "No valid function file found"
+
+msgid "No valid selection"
+msgstr "Не правильный выбор"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "OK/EXIT"
+msgstr "OK/EXIT"
+
+msgid "Overwrite existing Backup?."
+msgstr "Заменить существующий бекап ?"
+
+msgid "Overwrite existing Settings?."
+msgstr "Заменить существующие настройки ?"
+
+msgid "Pause"
+msgstr "Pause"
+
+msgid "Picture Player"
+msgstr "Фотоплеер"
+
+msgid "Play"
+msgstr "Play"
+
+msgid "Please Restart MultiQuickButton"
+msgstr "Перегрузите MultiQuickButton"
+
+msgid "Please select the backup path..."
+msgstr "Выбирите директорию для сохранения ..."
+
+msgid "Please select the restore path..."
+msgstr "Пожалуйста, выберите путь восстановления ..."
+
+msgid "Plugin Browser"
+msgstr "Список плагинов"
+
+msgid "Plugins"
+msgstr "Плагины"
+
+msgid "Quickbutton Key : "
+msgstr "Кнопки быстрого доступа :"
+
+msgid "Quickbutton: Key "
+msgstr "Quickbutton: Key "
+
+msgid "Quite without saving changes ?"
+msgstr "Закрыть без сохранения ?"
+
+msgid "RADIO"
+msgstr "Radio"
+
+msgid "Reboot"
+msgstr "Перегрузка ресивера"
+
+msgid "Restart SoftCam"
+msgstr "Restart SoftCam"
+
+msgid ""
+"Restarting Enigma2 to (de)activate:\n"
+"OK and EXIT Button"
+msgstr ""
+"Starte Enigma2 neu um die Tasten:\n"
+"OK und EXIT zu (de)aktivieren"
+
+msgid "Restarting Enigma2 to load:\n"
+msgstr "Перезагрузка Enigma2 для загрузки:\n"
+
+msgid ""
+"Restarting Enigma2 to set\n"
+"Multi QuickButton Autostart"
+msgstr ""
+"Перезапуск Enigma2 to set\n"
+"Multi QuickButton Autostart"
+
+msgid "Restore"
+msgstr "Востановление"
+
+msgid "Restore Settings..."
+msgstr "Восстановление параметров ..."
+
+msgid "Rewind <<"
+msgstr "Перемотка <<"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Save Settings"
+msgstr "Сохранить настройки"
+
+msgid "Show PIP"
+msgstr "Показать PIP"
+
+msgid "Sleeptimer"
+msgstr "Таймер сна"
+
+msgid "Start Teletext"
+msgstr "Запустить Teletext"
+
+msgid "Start Timeshift"
+msgstr "Включить Timeshift"
+
+msgid "Stop"
+msgstr "Stop"
+
+msgid "Subservice Selection"
+msgstr "Выбор Subservice"
+
+msgid "Subtitles"
+msgstr "Субтитры"
+
+msgid "Swap PIP"
+msgstr "Обмен PIP"
+
+msgid "Switch 4:3 (Pillarbox) (Pan&Scan)"
+msgstr "Переключение 4:3 (Pillarbox<=> Pan&Scan)"
+
+msgid "TEXT"
+msgstr "TEXT"
+
+msgid "TV"
+msgstr "TV"
+
+msgid "Timer"
+msgstr "Таймер"
+
+msgid "Toggle AtmoLight"
+msgstr "Переключить AtmoLight"
+
+msgid "VTI Backup Tools"
+msgstr "VTI Backup Tools"
+
+msgid "VTI BitrateViewer"
+msgstr "VTI BitrateViewer"
+
+msgid "VTI CamCenter"
+msgstr "VTI CamCenter"
+
+msgid "VTI CronManager"
+msgstr "VTI CronManager"
+
+msgid "VTI DeviceManager"
+msgstr "VTI Девайс менеджер"
+
+msgid "VTI EPG Settings"
+msgstr "VTI настройки EPG"
+
+msgid "VTI ExeManager"
+msgstr "VTI ExeManager"
+
+msgid "VTI Image Tools"
+msgstr "VTI Image Tools"
+
+msgid "VTI Info Tools"
+msgstr "VTI Info Tools"
+
+msgid "VTI Manual Package Installation"
+msgstr "VTI ручная установка пакетов (USB или /tmp)"
+
+msgid "VTI News"
+msgstr "Новости VTI"
+
+msgid "VTI Panel"
+msgstr "VTI Panel"
+
+msgid "VTI System Tools"
+msgstr "VTI System Tools"
+
+msgid "VTI USB DVB-T/C/S2 Panel"
+msgstr "VTI USB DVB-T/C/S2 Panel"
+
+msgid "VU+ EPG / INFO"
+msgstr "EPG"
+
+msgid "VU+ R-Button"
+msgstr "Кнопка R"
+
+msgid "Zap history back"
+msgstr "Предыдущий канал в истории"
+
+msgid "Zap history next"
+msgstr "Следующий канал в истории"
+
+msgid "blue"
+msgstr "синяя"
+
+msgid "delete"
+msgstr "удалить"
+
+msgid "file %s not found!"
+msgstr "Файл% не найден!"
+
+msgid "green"
+msgstr "зеленая"
+
+msgid "off"
+msgstr "выкл."
+
+msgid "on"
+msgstr "вкл."
+
+msgid "red"
+msgstr "красная"
+
+msgid "yellow"
+msgstr "желтая"

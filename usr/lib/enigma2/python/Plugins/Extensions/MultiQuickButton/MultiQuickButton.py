@@ -11,14 +11,15 @@ from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
 from Components.Label import Label
 from Components.PluginComponent import plugins
-from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigLocations, ConfigText, ConfigSelection, getConfigListEntry, ConfigInteger
+from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigLocations, ConfigText, ConfigSelection, getConfigListEntry, ConfigInteger, NoSave
 from Components.ConfigList import ConfigListScreen
+from Components.Sources.StaticText import StaticText
+from Components.Sources.List import List
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
 from Screens.LocationBox import LocationBox
-from Components.Sources.List import List
 from Plugins.Plugin import PluginDescriptor
 from Screens.Standby import TryQuitMainloop
 from QuickButtonList import QuickButtonList, QuickButtonListEntry
@@ -28,10 +29,11 @@ from Tools.Directories import *
 import xml.sax.xmlreader
 import keymapparser
 import os
-import os.path
+from os import path, chmod
 from __init__ import _
 
 functionfile = "/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/mqbfunctions.xml"
+macrofile = "/etc/MultiQuickButton/mqb_macro.cfg"
 config.plugins.QuickButton = ConfigSubsection()
 config.plugins.QuickButton.enable = ConfigYesNo(default = True)
 config.plugins.QuickButton.info = ConfigYesNo(default = True)
@@ -39,17 +41,7 @@ config.plugins.QuickButton.okexitstate = ConfigYesNo(default = False)
 config.plugins.QuickButton.mainmenu = ConfigYesNo(default = True)
 config.plugins.QuickButton.last_backupdir = ConfigText(default=resolveFilename(SCOPE_SYSETC))
 config.plugins.QuickButton.backupdirs = ConfigLocations(default=[resolveFilename(SCOPE_SYSETC)])
-config.plugins.QuickButton.channel1 = ConfigInteger(default = 1, limits = (0, 9999))
-config.plugins.QuickButton.channel2 = ConfigInteger(default = 2, limits = (0, 9999))
-config.plugins.QuickButton.channel3 = ConfigInteger(default = 3, limits = (0, 9999))
-config.plugins.QuickButton.channel4 = ConfigInteger(default = 4, limits = (0, 9999))
-config.plugins.QuickButton.channel5 = ConfigInteger(default = 5, limits = (0, 9999))
-config.plugins.QuickButton.macroI = ConfigText(default = "")
-config.plugins.QuickButton.macroII = ConfigText(default = "")
-config.plugins.QuickButton.macroIII = ConfigText(default = "")
-config.plugins.QuickButton.macroIV = ConfigText(default = "")
-config.plugins.QuickButton.macroV = ConfigText(default = "")
-MultiQuickButton_version = "2.7.11"
+MultiQuickButton_version = "2.7.13"
 autostart=_("Autostart") + ": "
 menuentry=_("Main menu") + ": "
 info=_("Info") + ": "
@@ -57,7 +49,8 @@ okexit=_("OK/EXIT") + ": "
 
 values = ("red","red_long","green","green_long","yellow","yellow_long","blue","blue_long","pvr","pvr_long","radio","radio_long","text","text_long", \
 			"help_long","info","info_long","end","end_long","home","home_long","cross_up","cross_down","cross_left","cross_right","previous","next", \
-			"channelup","channeldown","audio","ok","exit","play","pause","fastforward","stop","rewind","tv")
+			"channelup","channeldown","audio","ok","exit","play","pause","fastforward","stop","rewind","tv", "subtitle", \
+			"mqb_voldown", "mqb_volup", "mqb_mute", "mqb_power", "mqb_power_long")
 
 class MultiQuickButton(Screen):
 
@@ -83,8 +76,6 @@ class MultiQuickButton(Screen):
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/button_blue.png" zPosition="2" position="610,450" size="25,25" alphatest="on" />
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/key_0.png" zPosition="2" position="15,490" size="35,25" alphatest="on" />
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/key_1.png" zPosition="2" position="205,490" size="35,25" alphatest="on" />
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/key_2.png" zPosition="2" position="415,490" size="35,25" alphatest="on" />
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/key_3.png" zPosition="2" position="605,490" size="35,25" alphatest="on" />
 			<widget name="key_red" backgroundColor="#1f771f" zPosition="2" position="50,445" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="key_green" backgroundColor="#1f771f" position="240,445" zPosition="2" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="key_yellow" backgroundColor="#1f771f" position="450,445" zPosition="2"  size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
@@ -105,8 +96,6 @@ class MultiQuickButton(Screen):
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/button_blue.png" zPosition="2" position="490,250" size="25,25" alphatest="on" />
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/key_0.png" zPosition="2" position="6,290" size="35,25" alphatest="on" />
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/key_1.png" zPosition="2" position="156,290" size="35,25" alphatest="on" />
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/key_2.png" zPosition="2" position="326,290" size="35,25" alphatest="on" />
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/key_3.png" zPosition="2" position="486,290" size="35,25" alphatest="on" />
 			<widget name="key_red" backgroundColor="#1f771f" zPosition="2" position="35,245" size="250,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="key_green" backgroundColor="#1f771f" position="185,245" zPosition="2" size="250,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="key_yellow" backgroundColor="#1f771f" position="355,245" zPosition="2"  size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
@@ -132,8 +121,8 @@ class MultiQuickButton(Screen):
 		self["key_blue"] = Label(_("Backup"))
 		self["key_0"] = Label(info)
 		self["key_1"] = Label(okexit)
-		self["key_2"] = Label(_("Channels"))
-		self["key_3"] = Label(_("Macros"))
+		self["key_2"] = Label("")
+		self["key_3"] = Label("")
 		self.createList()
 		self["list"] = QuickButtonList(list=self.list, selection = 0)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "EPGSelectActions"],
@@ -146,8 +135,6 @@ class MultiQuickButton(Screen):
 			"blue": self.backup,
 			"0": self.setInfo,
 			"1": self.toggleOkExit,
-			"2": self.setChannels,
-			"3": self.configMacro,
 			"info": self.showAbout,
 		}, -1)
 		self.onShown.append(self.updateSettings)
@@ -198,6 +185,7 @@ class MultiQuickButton(Screen):
 		self.list.append(QuickButtonListEntry('',((_('HOME') + _(' long')) + functionbutton_home_long, 'home_long')))
 		self.list.append(QuickButtonListEntry('',(_('END') + functionbutton_end, 'end')))
 		self.list.append(QuickButtonListEntry('',((_('END') + _(' long')) + functionbutton_end_long, 'end_long')))
+		self.list.append(QuickButtonListEntry('',(_('Subtitle') + functionbutton_subtitle, 'subtitle')))
 		self.list.append(QuickButtonListEntry('',(_('VU+ R-Button') + functionbutton_pvr, 'pvr')))
 		self.list.append(QuickButtonListEntry('',((_('VU+ R-Button') + _(' long')) + functionbutton_pvr_long, 'pvr_long')))
 		self.list.append(QuickButtonListEntry('',(_('RADIO') + functionbutton_radio, 'radio')))
@@ -211,6 +199,11 @@ class MultiQuickButton(Screen):
 		self.list.append(QuickButtonListEntry('',(_('Channel -') + functionbutton_channeldown, 'channeldown')))
 		self.list.append(QuickButtonListEntry('',(_('Forward >') + functionbutton_next, 'next')))
 		self.list.append(QuickButtonListEntry('',(_('Backward <') + functionbutton_previous, 'previous')))
+		self.list.append(QuickButtonListEntry('',(_('Volume +') + functionbutton_mqb_volup, 'mqb_volup')))
+		self.list.append(QuickButtonListEntry('',(_('Volume -') + functionbutton_mqb_voldown, 'mqb_voldown')))
+		self.list.append(QuickButtonListEntry('',(_('Mute') + functionbutton_mqb_mute, 'mqb_mute')))
+		self.list.append(QuickButtonListEntry('',(_('Power') + functionbutton_mqb_power, 'mqb_power')))
+		self.list.append(QuickButtonListEntry('',((_('Power') + _(' long')) + functionbutton_mqb_power_long, 'mqb_power_long')))
 		self.list.append(QuickButtonListEntry('',(_('Audio') + functionbutton_audio, 'audio')))
 		if config.plugins.QuickButton.okexitstate.value:
 			self.list.append(QuickButtonListEntry('',('OK' + functionbutton_ok, 'ok')))
@@ -257,11 +250,12 @@ class MultiQuickButton(Screen):
 
 	def run(self):
 		returnValue = self["list"].l.getCurrentSelection()[0][1]
+		title = self["list"].l.getCurrentSelection()[0][0]
 		if returnValue is not None:
 			if returnValue in values:
 				path = '/etc/MultiQuickButton/quickbutton_' + returnValue + '.xml'
 				if os.path.exists(path) is True:
-					self.session.openWithCallback(self.updateAfterButtonChange, QuickButton, path, (_("Quickbutton Key : ") + _(returnValue)))
+					self.session.openWithCallback(self.updateAfterButtonChange, QuickButton, path, (_("Quickbutton Key : %s") % title))
 				else:
 					self.session.open(MessageBox,("file %s not found!" % (path)),  MessageBox.TYPE_ERROR)
 
@@ -385,12 +379,6 @@ class MultiQuickButton(Screen):
 		config.plugins.QuickButton.okexitstate.save()
 		self.updateList()
 		self.updateSettings()
-
-	def setChannels(self):
-		self.session.open(MultiQuickButtonChannelConfiguration)
-
-	def configMacro(self):
-		self.session.open(MultiQuickButtonMacro)
 
 	def showAbout(self):
 		self.session.open(MessageBox,("Multi Quickbutton idea is based on\nGP2\'s Quickbutton\nVersion: 2.7\nby Emanuel CLI-Team 2009\nwww.cablelinux.info\n ***special thanks*** to:\ngutemine & AliAbdul & Dr.Best ;-)\n\nChanges for VU+ by plnick\nplnick@vuplus-support.org\nwww.vuplus-support.org\nVersion %s" % (MultiQuickButton_version)),  MessageBox.TYPE_INFO)
@@ -596,6 +584,8 @@ class QuickButton(Screen):
 				self.addfunction()
 			elif selection[1] == "plugins":
 				self.addplugin()
+			elif selection[1] == "macros":
+				self.addmacro()
 			else:
 				self.session.open(MessageBox,_("No valid selection"), type = MessageBox.TYPE_ERROR,timeout = 5)
 
@@ -603,6 +593,7 @@ class QuickButton(Screen):
 		entrytype = []
 		entrytype.append((_("Add Functions to MQB Key"),"functions"))
 		entrytype.append((_("Add Plugins to MQB Key"),"plugins"))
+		entrytype.append((_("Add Macro to MQB Key"),"macros"))
 		return entrytype
 
 	def addfunction(self):
@@ -616,6 +607,10 @@ class QuickButton(Screen):
 		self.changed = True
 		self.session.openWithCallback(self.QuickPluginSelected,ChoiceBox,_("Plugins") ,self.getPluginsList())
 
+	def addmacro(self):
+		self.changed = True
+		self.session.openWithCallback(self.QuickPluginSelected, MultiQuickButtonMacro)
+		
 	def QuickPluginSelected(self, choice):
 		if choice:
 			for entry in self["list"].list:
@@ -626,6 +621,8 @@ class QuickButton(Screen):
 				self.XML_db.addPluginEntry(choice[1])
 			elif choice[2] == "functions":
 				self.XML_db.addFunctionEntry(choice[1])
+			elif choice[2] == "macros":
+				self.XML_db.addMacroEntry(choice)
 			else:
 				return
 			list = []
@@ -679,69 +676,6 @@ class QuickButton(Screen):
 		else:
 			self.close(None)
 
-class MultiQuickButtonChannelConfiguration(Screen, ConfigListScreen):
-	skin = """
-		<screen position="center,center" size="550,300" title="MultiQuickButton Channel Selection" >
-		<widget name="config" position="0,0" size="550,260" scrollbarMode="showOnDemand" />
-		<widget name="buttonred" position="10,260" size="100,40" backgroundColor="red" valign="center" halign="center" zPosition="2" foregroundColor="white" font="Regular;18"/>
-		<widget name="buttongreen" position="120,260" size="100,40" backgroundColor="green" valign="center" halign="center" zPosition="2" foregroundColor="white" font="Regular;18"/>
-		</screen>"""
-
-	def __init__(self, session, args = 0):
-		self.session = session
-		Screen.__init__(self, session)
-
-		self.createConfigList()
-		self.onShown.append(self.setWindowTitle)
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-
-		self["buttonred"] = Label(_("Cancel"))
-		self["buttongreen"] = Label(_("OK"))
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
-			{
-				"green": self.save,
-				"red": self.cancel,
-				"save": self.save,
-				"cancel": self.cancel,
-				"ok": self.save,
-			}, -2)
-
-	def createConfigList(self):
-		self.list = []
-		self.list.append(getConfigListEntry((_("Channel") + (" 1")), config.plugins.QuickButton.channel1))
-		self.list.append(getConfigListEntry((_("Channel") + (" 2")), config.plugins.QuickButton.channel2))
-		self.list.append(getConfigListEntry((_("Channel") + (" 3")), config.plugins.QuickButton.channel3))
-		self.list.append(getConfigListEntry((_("Channel") + (" 4")), config.plugins.QuickButton.channel4))
-		self.list.append(getConfigListEntry((_("Channel") + (" 5")), config.plugins.QuickButton.channel5))
-
-	def changedEntry(self):
-		self.createConfigList()
-		self["config"].setList(self.list)
-
-	def setWindowTitle(self):
-		self.setTitle(_("Channel Selection"))
-
-	def save(self):
-		for x in self["config"].list:
-			x[1].save()
-		self.changedEntry()
-		self.close(True,self.session)
-
-	def cancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Quite without saving changes ?"), MessageBox.TYPE_YESNO, default = False)
-		else:
-			for x in self["config"].list:
-				x[1].cancel()
-			self.close(False,self.session)
-
-	def cancelConfirm(self, result):
-		if result is None or result is False:
-			pass
-		else:
-			for x in self["config"].list:
-				x[1].cancel()
-			self.close(False,self.session)
 
 class MultiQuickButtonMacro(Screen):
 	skin = """
@@ -754,10 +688,10 @@ class MultiQuickButtonMacro(Screen):
 		<widget name="buttongreen" backgroundColor="#1f771f" position="185,343" zPosition="2" size="250,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 		<widget name="buttonyellow" backgroundColor="#1f771f" position="355,343" zPosition="2"  size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 		<widget name="buttonblue" backgroundColor="#1f771f" position="515,343" zPosition="2"  size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-		<widget source="menu" render="Listbox" position="10,50" size="500,285" scrollbarMode="showOnDemand" >
+		<widget source="menu" render="Listbox" position="10,50" size="600,285" scrollbarMode="showOnDemand" enableWrapAround="1" >
 			<convert type="TemplatedMultiContent" transparent="0">
 				{"template": [
-						MultiContentEntryText(pos = (52, 2), size = (500, 20), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = 0),
+						MultiContentEntryText(pos = (5, 2), size = (600, 20), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = 0),
 					],
 				"fonts": [gFont("Regular", 22)],
 				"itemHeight": 26
@@ -769,28 +703,27 @@ class MultiQuickButtonMacro(Screen):
 	def __init__(self, session, args = 0):
 		self.session = session
 		Screen.__init__(self, session)
-
+		
 		self.title=_("MultiQuickButton macro configuration")
 		try:
 			self["title"]=StaticText(self.title)
 		except:
 			print 'self["title"] was not found in skin'
-
-		self.list = []
+		
+		self.list = self.readConfig()
 		self["menu"] = List(self.list)
-
-		self["buttonred"] = Label(_("Exit"))
-		self["buttongreen"] = Label(_("OK"))
-		self["buttonyellow"] = Label()
-		self["buttonblue"] = Label()
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
+		
+		self["buttonred"] = Label(_("Name"))
+		self["buttongreen"] = Label(_("Modify"))
+		self["buttonyellow"] = Label(_("Delete"))
+		self["buttonblue"] = Label(_("Add"))
+		self["setupActions"] = ActionMap(["ColorActions", "SetupActions",],
 			{
 				"green": self.save,
-				"red": self.cancel,
+				"red": self.keyRed,
 				"blue": self.addButton,
 				"yellow": self.removeButton,
-				"save": self.save,
-				"cancel": self.cancel,
+				"cancel": self.keyCancel,
 				"ok": self.keyOk,
 			}, -2)
 		self.selectmacro = True
@@ -843,20 +776,39 @@ class MultiQuickButtonMacro(Screen):
 					"114" : _("Volume -"),
 					"113" : _("Mute"),
 					"407" : _("Forward >"),
-					"412" : _("Backward <")
+					"412" : _("Backward <"),
+					"P100" : (_("Pause") + " 0.1 sec"),
+					"P500" : (_("Pause") + " 0.5 sec"),
+					"P1000" : (_("Pause") + " 1.0 sec")
 				}
 
-		self.onLayoutFinish.append(self.createMenu)
+	def readConfig(self):
+		config_list = []
+		if not os.path.exists(macrofile):
+			system("touch %s" % macrofile)
+			os.chmod(macrofile, 0644)
+		content = open(macrofile).readlines()
+		for line in content:
+			line = line.strip().split(":")
+			if len(line) == 2:
+				config_list.append((line[0], line[1]))
+		return config_list
 
-	def createMenu(self):
-		self.textstring = _("Configure macro")
-		self.list = []
-		self.list.append((self.textstring + " I", "macroI"))
-		self.list.append((self.textstring + " II", "macroII"))
-		self.list.append((self.textstring + " III", "macroIII"))
-		self.list.append((self.textstring + " IV", "macroIV"))
-		self.list.append((self.textstring + " V", "macroV"))
-		self["menu"].setList(self.list)
+	def writeConfig(self):
+		text = ""
+		if len(self.list):
+			for button in self.list:
+				if len(button) == 2:
+					text += "%s:%s\n" % (str(button[0]), str(button[1]))
+		f = open(macrofile, "w")
+		f.write(text)
+		f.close()
+
+	def changeMacroName(self, ret = None):
+		if ret and ret[0]:
+			idx = ret[1]
+			cur_old = self.list[idx]
+			self.list[idx] = (str(ret[0]), cur_old[1])
 
 	def keyOk(self):
 		cur = self["menu"].getCurrent()
@@ -866,31 +818,23 @@ class MultiQuickButtonMacro(Screen):
 			self["buttonyellow"].setText(_("Delete"))
 			self["buttonblue"].setText(_("Add"))
 			if self.configmacro == False and self.selectmacro == True:
-				self.selectmacro = False
-				self.configmacro = True
-				if cur[1] == "macroI":
-					keys = config.plugins.QuickButton.macroI.value
-				elif cur[1] == "macroII":
-					keys = config.plugins.QuickButton.macroII.value
-				elif cur[1] == "macroIII":
-					keys = config.plugins.QuickButton.macroIII.value
-				elif cur[1] == "macroIV":
-					keys = config.plugins.QuickButton.macroIV.value
-				elif cur[1] == "macroV":
-					keys = config.plugins.QuickButton.macroV.value
-				self.current_macro = cur[1]
-				self.macrolist = []
-				for key in keys.split(","):
-					if key in self.buttondic:
-						self.macrolist.append((_("Button : ") + _(self.buttondic[key]), key))
-				self["menu"].setList(self.macrolist)
+				self.writeConfig()
+				cur_macro = self["menu"].getCurrent()
+				ret = (cur_macro[0], cur_macro[1], "macros")
+				self.close(ret)
 			elif self.configmacro == True and self.selectmacro == False and self.addkey == True:
 				self.addkey = False
-				self.macrolist.append(cur)
+				self.macrolist.insert(self.new_key_idx, cur)
+				idx = len(self.macrolist) -1
 				self["menu"].setList(self.macrolist)
+				self['menu'].setIndex(self.new_key_idx)
 
 	def addButton(self):
-		if self.configmacro == True and self.selectmacro == False:
+		if self.configmacro == True and self.selectmacro == False  and self.addkey == False:
+			if len(self.macrolist):
+				self.new_key_idx = self["menu"].getIndex() + 1
+			else:
+				self.new_key_idx = 0
 			self["buttonred"].setText(_("Cancel"))
 			self["buttongreen"].setText(_("Ok"))
 			self["buttonyellow"].setText("")
@@ -898,15 +842,50 @@ class MultiQuickButtonMacro(Screen):
 			self.addkey = True
 			self.buttonlist =[]
 			for key in sorted(self.buttondic.iterkeys()):
-				self.buttonlist.append((_("Button : ") + self.buttondic[key], key))
+				if key.startswith('P'):
+					self.buttonlist.append(("--- " + self.buttondic[key] + " ---", key))
+				else:
+					self.buttonlist.append((_("Button : ") + self.buttondic[key], key))
 			self["menu"].setList(self.buttonlist)
+		elif self.selectmacro == True:
+			number = len(self.list) + 1
+			idx = self["menu"].getIndex() + 1
+			self.list.insert(idx, ("Macro %d" % number,""))
+			if len(self.list) == 1:
+				idx = 0
+			self['menu'].setList(self.list)
+			self['menu'].setIndex(idx)
 
 	def removeButton(self):
-		if self.configmacro == True and self.selectmacro == False:
-			cur = self["menu"].getCurrent()
-			if cur:
-				self.macrolist.remove(cur)
-			self['menu'].updateList(self.macrolist)
+		if self.configmacro == True and self.selectmacro == False  and self.addkey == False:
+			# hm, why we have to recreate the list if we remove entries which exists twice in the list ???
+			curidx = self["menu"].getIndex()
+			idx = -1
+			new_macrolist = []
+			for entry in self.macrolist:
+				idx += 1
+				if idx != curidx:
+					new_macrolist.append(entry)
+			self.macrolist = new_macrolist
+			self['menu'].setList(self.macrolist)
+			if len(self.macrolist) == curidx:
+				self['menu'].setIndex(curidx - 1)
+			else:
+				self['menu'].setIndex(curidx)
+		elif self.selectmacro == True:
+			curidx = self["menu"].getIndex()
+			idx = -1
+			new_list = []
+			for entry in self.list:
+				idx += 1
+				if idx != curidx:
+					new_list.append(entry)
+			self.list = new_list
+			self['menu'].setList(self.list)
+			if len(self.list) == curidx:
+				self['menu'].setIndex(curidx - 1)
+			else:
+				self['menu'].setIndex(curidx)
 
 	def save(self):
 		if self.configmacro == True and self.selectmacro == False and self.addkey == False:
@@ -917,42 +896,46 @@ class MultiQuickButtonMacro(Screen):
 			for entry in self.macrolist:
 				self.new_config_value = self.new_config_value + "," + entry[1]
 			self.new_config_value = self.new_config_value.strip(",")
-			if self.current_macro == "macroI":
-				config.plugins.QuickButton.macroI.value = self.new_config_value
-				config.plugins.QuickButton.macroI.save()
-			elif self.current_macro == "macroII":
-				config.plugins.QuickButton.macroII.value = self.new_config_value
-				config.plugins.QuickButton.macroII.save()
-			elif self.current_macro == "macroIII":
-				config.plugins.QuickButton.macroIII.value = self.new_config_value
-				config.plugins.QuickButton.macroIII.save()
-			elif self.current_macro == "macroIV":
-				config.plugins.QuickButton.macroIV.value = self.new_config_value
-				config.plugins.QuickButton.macroIV.save()
-			elif self.current_macro == "macroV":
-				config.plugins.QuickButton.macroV.value = self.new_config_value
-				config.plugins.QuickButton.macroV.save()
-			self["buttonred"].setText(_("Exit"))
-			self["buttongreen"].setText(_("Ok"))
-			self["buttonyellow"].setText("")
-			self["buttonblue"].setText("")
+			i = self.current_macro
+			macro = self.list[i][0]
+			self.list[i] = (macro, self.new_config_value)
+			self["buttonred"].setText(_("Name"))
+			self["buttongreen"].setText(_("Modify"))
 			self["menu"].setList(self.list)
-		elif self.selectmacro == True:
-			self.keyOk()
-		else:
-			self.close(True,self.session)
+			self.writeConfig()
+		elif self.configmacro == False and self.selectmacro == True:
+			if len(self.list):
+				cur = self["menu"].getCurrent()
+				self.selectmacro = False
+				self.configmacro = True
+				self.current_macro = self.list.index(cur)
+				self.macrolist = []
+				for key in cur[1].split(","):
+					if key in self.buttondic:
+						if key.startswith('P'):
+							self.macrolist.append(("--- " + _(self.buttondic[key]) + " ---", key))
+						else:
+							self.macrolist.append((_("Button : ") + _(self.buttondic[key]), key))
+				self["menu"].setList(self.macrolist)
+				self["buttonred"].setText(_("Cancel"))
+				self["buttongreen"].setText(_("Save"))
 
-	def cancel(self):
-		if self.selectmacro == True:
-			self.close(False,self.session)
+	def keyRed(self):
+		if self.configmacro == False and self.selectmacro == True:
+			cur = self["menu"].getCurrent()
+			idx = self.list.index(cur)
+			oldname = cur[0]
+			self.session.openWithCallback(self.changeMacroName, InputMacroName, idx, oldname)
+		
 		elif self.configmacro == True and self.selectmacro == False and self.addkey == False:
 			self.selectmacro = True
 			self.configmacro = False
-			self["buttonred"].setText(_("Exit"))
-			self["buttongreen"].setText(_("Ok"))
-			self["buttonyellow"].setText("")
-			self["buttonblue"].setText("")
+			self["buttonred"].setText(_("Name"))
+			self["buttongreen"].setText(_("Modify"))
+			self["buttonyellow"].setText(_("Delete"))
+			self["buttonblue"].setText(_("Add"))
 			self["menu"].setList(self.list)
+		
 		elif self.configmacro == True and self.selectmacro == False and self.addkey == True:
 			self.addkey = False
 			self["buttonred"].setText(_("Cancel"))
@@ -960,3 +943,58 @@ class MultiQuickButtonMacro(Screen):
 			self["buttonyellow"].setText(_("Delete"))
 			self["buttonblue"].setText(_("Add"))
 			self["menu"].setList(self.macrolist)
+
+	def keyCancel(self):
+		if self.configmacro == False and self.selectmacro == True:
+			ret = None
+			self.close(ret)
+		else:
+			self.keyRed()
+
+class InputMacroName(Screen, ConfigListScreen):
+	skin = """
+		<screen name="InputMacroName" position="center,center" size="640,100" title="Input macro name" >
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/button_red.png" zPosition="2" position="10,50" size="25,25" alphatest="on" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/button_green.png" zPosition="2" position="160,50" size="25,25" alphatest="on" />
+			<widget render="Label" source="key_red" backgroundColor="#1f771f" position="35,43" zPosition="2" size="250,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget render="Label" source="key_green" backgroundColor="#1f771f" position="185,43" zPosition="2" size="250,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="config" zPosition="2" position="10,5" size="620,200" transparent="1" />
+		</screen>
+		"""
+
+	def __init__(self, session, idx, oldname):
+		Screen.__init__(self, session)
+		self.title=_("Input name for MQB macro")
+		try:
+			self["title"]=StaticText(self.title)
+		except:
+			print 'self["title"] was not found in skin'
+		self.listidx = idx
+		self.macroname = NoSave(ConfigText(default = oldname, visible_width = 50, fixed_size = False))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Ok"))
+		self["shortcuts"] = ActionMap(["SetupActions", "ColorActions", "InputActions"],
+		{
+			"ok": self.keyGo,
+			"cancel": self.keyCancel,
+			"red": self.keyCancel,
+			"green": self.keyGo,
+		}, -1)
+		self.list = []
+		ConfigListScreen.__init__(self, self.list,session = session)
+		self.createSetup()
+
+	def createSetup(self):
+		self.list = []
+		self.inputpanelpassword = getConfigListEntry(_("Input name for MQB macro : "), self.macroname)
+		self.list.append(self.inputpanelpassword)
+		self["config"].list = self.list
+		self["config"].l.setList(self.list)
+
+	def keyCancel(self):
+		ret = None
+		self.close((ret, self.listidx))
+
+	def keyGo(self):
+		ret = self.macroname.value
+		self.close((ret, self.listidx))

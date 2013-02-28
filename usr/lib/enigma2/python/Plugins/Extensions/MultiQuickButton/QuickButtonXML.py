@@ -155,6 +155,40 @@ class QuickButtonXML(object):
 			self.list.append((name, "1", "Menu", module, screen, code))
 		return self.list
 
+	def addMacroEntry(self, macro):
+		if len(macro):
+			name = macro[0]
+			macro_keys = macro[1]
+			module = ""
+			screen = ""
+			key_list = []
+			for key in macro_keys.split(","):
+				key_list.append(str(key))
+			code = "from Plugins.Extensions.MultiQuickButton.MQBMacroHelper import MacroHelper\nkeys = " + str(key_list) + "\nmacrohelper = MacroHelper(keys)\nmacrohelper.pressButton()\n"
+		else:
+			return ""
+		idx = 0
+		if self.list <> []:
+			for i in self.list:
+				if i[2] == "Menu":
+					idx += 1
+				elif i[2] == "Plugins":
+					idx += 1
+				else:
+					pass
+			if idx > 0:
+				idx +=1
+			else:
+				pass
+			tmp = self.list[:idx]
+			tmp.append((name, "1", "Menu", module, screen, code))
+			tmp += self.list[idx:]
+			self.list = tmp
+		else:
+			self.list = []
+			self.list.append((name, "1", "Menu", module, screen, code))
+		return self.list
+
 	def mkContent(self, n):
 		if n <> None:
 			xml = "\t\t<content>\n"

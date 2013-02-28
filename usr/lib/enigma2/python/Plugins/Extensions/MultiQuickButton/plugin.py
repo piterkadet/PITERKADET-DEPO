@@ -133,7 +133,7 @@ def InfoBarPlugins__init__(self):
 	global StartOnlyOneTime
 	if not StartOnlyOneTime:
 		StartOnlyOneTime = True
-
+		
 		self["QuickButtonActions"] = MQBActionMap(["QuickButtonActions"],
 			{
 				"red": self.quickSelectGlobal,
@@ -158,6 +158,7 @@ def InfoBarPlugins__init__(self):
 				"end_long": self.quickSelectGlobal,
 				"home": self.quickSelectGlobal,
 				"home_long": self.quickSelectGlobal,
+				"subtitle": self.quickSelectGlobal,
 				"cross_up": self.quickSelectGlobal,
 				"cross_down": self.quickSelectGlobal,
 				"cross_left": self.quickSelectGlobal,
@@ -178,6 +179,15 @@ def InfoBarPlugins__init__(self):
 				"f2": self.quickSelectGlobal,
 				"f3": self.quickSelectGlobal,
 			})
+		
+		self["GlobalQuickButtonActions"] = MQBActionMap(["GlobalQuickButtonActions"],
+			{
+				"mqb_volup": self.quickSelectGlobal,
+				"mqb_voldown": self.quickSelectGlobal,
+				"mqb_mute": self.quickSelectGlobal,
+				"mqb_power": self.quickSelectGlobal,
+				"mqb_power_long": self.quickSelectGlobal,
+			}, -1)
 	else:
 		InfoBarPlugins.__init__ = InfoBarPlugins.__init__
 		InfoBarPlugins.runPlugin = InfoBarPlugins.runPlugin
@@ -253,9 +263,10 @@ def quickSelectGlobal(self, key):
 
 class MQBActionMap(ActionMap):
 	def action(self, contexts, action):
-		quickSelection = ("red","red_long","green","green_long","yellow","yellow_long","blue","blue_long","pvr","pvr_long","radio","radio_long", \
-				  "text","text_long","help_long","info","info_long","end","end_long","home","home_long","cross_up","cross_down","cross_left", \
-				  "cross_right","previous","next","channelup","channeldown","f1","f2","f3","audio","exit","ok","play","pause","rewind","fastforward","stop","tv")
+		quickSelection = ("red", "red_long", "green", "green_long", "yellow", "yellow_long", "blue", "blue_long", "pvr", "pvr_long", "radio", "radio_long", \
+				  "text", "text_long", "help_long", "info", "info_long", "end", "end_long", "home", "home_long", "cross_up", "cross_down", "cross_left", \
+				  "cross_right", "previous", "next", "channelup", "channeldown", "f1", "f2", "f3", "audio", "exit", "ok", "play", "pause", "rewind", \
+				  "fastforward", "stop", "tv", "subtitle", "mqb_volup", "mqb_voldown", "mqb_mute", "mqb_power", "mqb_power_long")
 		if (action in quickSelection and self.actions.has_key(action)):
 			res = self.actions[action](action)
 			if res is not None:

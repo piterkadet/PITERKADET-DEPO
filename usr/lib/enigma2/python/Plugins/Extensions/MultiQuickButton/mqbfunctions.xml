@@ -5,6 +5,19 @@
 <xml>
 
 <mqbfunction>
+<name>VTI Restart SoftCam</name>
+<code>print 'Stopping SoftCam'
+self.session.open(MessageBox, _(" Restarting SoftCam"), MessageBox.TYPE_INFO, 5)
+os.system('/etc/init.d/current_cam.sh restart')</code>
+</mqbfunction>
+
+<mqbfunction>
+<name>HbbTV RedButton</name>
+<code>from Screens.InfoBarGenerics import InfoBarRedButton
+self.activateRedButton()</code>
+</mqbfunction>
+
+<mqbfunction>
 <name>Extension Selection</name>
 <code>from Screens.InfoBar import InfoBar
 if InfoBar and InfoBar.instance:
@@ -172,41 +185,6 @@ if InfoBar and InfoBar.instance:
 </mqbfunction>
 
 <mqbfunction>
-<name>Favourite channel 1</name>
-<code>from Screens.InfoBar import InfoBar
-if InfoBar and InfoBar.instance:
-	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel1.getValue())</code>
-</mqbfunction>
-
-<mqbfunction>
-<name>Favourite channel 2</name>
-<code>from Screens.InfoBar import InfoBar
-if InfoBar and InfoBar.instance:
-	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel2.getValue())</code>
-</mqbfunction>
-
-<mqbfunction>
-<name>Favourite channel 3</name>
-<code>from Screens.InfoBar import InfoBar
-if InfoBar and InfoBar.instance:
-	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel3.getValue())</code>
-</mqbfunction>
-
-<mqbfunction>
-<name>Favourite channel 4</name>
-<code>from Screens.InfoBar import InfoBar
-if InfoBar and InfoBar.instance:
-	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel4.getValue())</code>
-</mqbfunction>
-
-<mqbfunction>
-<name>Favourite channel 5</name>
-<code>from Screens.InfoBar import InfoBar
-if InfoBar and InfoBar.instance:
-	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel5.getValue())</code>
-</mqbfunction>
-
-<mqbfunction>
 <name>Subservice Selection</name>
 <code>from Screens.InfoBar import InfoBar
 if InfoBar and InfoBar.instance:
@@ -230,6 +208,20 @@ if InfoBar and InfoBar.instance:
 <code>from Screens.InfoBar import InfoBar
 if InfoBar and InfoBar.instance:
 	InfoBar.audioSelection(InfoBar.instance)</code>
+</mqbfunction>
+
+<mqbfunction>
+<name>AutoResolution on/off</name>
+<code>from Plugins.SystemPlugins.AutoResolution.plugin import *
+if config.plugins.autoresolution.enable.value == True:
+	config.plugins.autoresolution.enable.value = False
+	msg = _("AutoResolution is disabled")
+else:
+	config.plugins.autoresolution.enable.value = True
+	msg = _("AutoResolution is enabled")
+config.plugins.autoresolution.enable.save()
+from Screens.MessageBox import MessageBox
+self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, 2)</code>
 </mqbfunction>
 
 <mqbfunction>
@@ -301,73 +293,82 @@ self.session.open(Screens.Standby.TryQuitMainloop,1)</code>
 </mqbfunction>
 
 <mqbfunction>
-<name>Remote control macro I</name>
-<code>from Components.InputDevice import iInputDevices
-from enigma import eActionMap
-rcdevicename = iInputDevices.getDeviceName('event0')
-keyaction = eActionMap.getInstance()
-keys = config.plugins.QuickButton.macroI.value
-for key in keys.split(","):
-	if key is not "":
-		key = int(key)
-		keyaction.keyPressed(rcdevicename, key, int(0))
-		keyaction.keyPressed(rcdevicename, key, int(1))</code>
+<name>HDMI-CEC TV on</name>
+<code>from enigma import eHdmiCEC
+import struct
+self.session.open(MessageBox, _("HDMI-CEC message was sent"), MessageBox.TYPE_INFO, 3)
+address = int("0",16)
+cecmessage = int("04",16)
+cmd = struct.pack('B',cecmessage)
+eHdmiCEC.getInstance().sendMessage(address, len(cmd), str(cmd))</code>
 </mqbfunction>
 
 <mqbfunction>
-<name>Remote control macro II</name>
-<code>from Components.InputDevice import iInputDevices
-from enigma import eActionMap
-rcdevicename = iInputDevices.getDeviceName('event0')
-keyaction = eActionMap.getInstance()
-keys = config.plugins.QuickButton.macroII.value
-for key in keys.split(","):
-	if key is not "":
-		key = int(key)
-		keyaction.keyPressed(rcdevicename, key, int(0))
-		keyaction.keyPressed(rcdevicename, key, int(1))</code>
+<name>HDMI-CEC TV off</name>
+<code>from enigma import eHdmiCEC
+import struct
+self.session.open(MessageBox, _("HDMI-CEC message was sent"), MessageBox.TYPE_INFO, 3)
+address = int("0",16)
+cecmessage = int("36",16)
+cmd = struct.pack('B',cecmessage)
+eHdmiCEC.getInstance().sendMessage(address, len(cmd), str(cmd))</code>
 </mqbfunction>
 
 <mqbfunction>
-<name>Remote control macro III</name>
-<code>from Components.InputDevice import iInputDevices
-from enigma import eActionMap
-rcdevicename = iInputDevices.getDeviceName('event0')
-keyaction = eActionMap.getInstance()
-keys = config.plugins.QuickButton.macroIII.value
-for key in keys.split(","):
-	if key is not "":
-		key = int(key)
-		keyaction.keyPressed(rcdevicename, key, int(0))
-		keyaction.keyPressed(rcdevicename, key, int(1))</code>
+<name>HDMI-CEC A/V on</name>
+<code>from enigma import eHdmiCEC
+import struct
+self.session.open(MessageBox, _("HDMI-CEC message was sent"), MessageBox.TYPE_INFO, 3)
+address = int("5",16)
+cecmessage = int("44",16)
+cecmessagetwo = int("6D",16)
+cmd = struct.pack('BB',cecmessage,cecmessagetwo)
+eHdmiCEC.getInstance().sendMessage(address, len(cmd), str(cmd))</code>
 </mqbfunction>
 
 <mqbfunction>
-<name>Remote control macro IV</name>
-<code>from Components.InputDevice import iInputDevices
-from enigma import eActionMap
-rcdevicename = iInputDevices.getDeviceName('event0')
-keyaction = eActionMap.getInstance()
-keys = config.plugins.QuickButton.macroIV.value
-for key in keys.split(","):
-	if key is not "":
-		key = int(key)
-		keyaction.keyPressed(rcdevicename, key, int(0))
-		keyaction.keyPressed(rcdevicename, key, int(1))</code>
+<name>HDMI-CEC A/V off</name>
+<code>from enigma import eHdmiCEC
+import struct
+self.session.open(MessageBox, _("HDMI-CEC message was sent"), MessageBox.TYPE_INFO, 3)
+address = int("5",16)
+cecmessage = int("44",16)
+cecmessagetwo = int("6C",16)
+cmd = struct.pack('BB',cecmessage,cecmessagetwo)
+eHdmiCEC.getInstance().sendMessage(address, len(cmd), str(cmd))</code>
 </mqbfunction>
 
 <mqbfunction>
-<name>Remote control macro V</name>
-<code>from Components.InputDevice import iInputDevices
-from enigma import eActionMap
-rcdevicename = iInputDevices.getDeviceName('event0')
-keyaction = eActionMap.getInstance()
-keys = config.plugins.QuickButton.macroV.value
-for key in keys.split(","):
-	if key is not "":
-		key = int(key)
-		keyaction.keyPressed(rcdevicename, key, int(0))
-		keyaction.keyPressed(rcdevicename, key, int(1))</code>
+<name>HDMI-CEC A/V Volume +</name>
+<code>from enigma import eHdmiCEC
+import struct
+address = int("5",16)
+cecmessage = int("44",16)
+cecmessagetwo = int("41",16)
+cmd = struct.pack('BB',cecmessage,cecmessagetwo)
+eHdmiCEC.getInstance().sendMessage(address, len(cmd), str(cmd))</code>
+</mqbfunction>
+
+<mqbfunction>
+<name>HDMI-CEC A/V Volume -</name>
+<code>from enigma import eHdmiCEC
+import struct
+address = int("5",16)
+cecmessage = int("44",16)
+cecmessagetwo = int("42",16)
+cmd = struct.pack('BB',cecmessage,cecmessagetwo)
+eHdmiCEC.getInstance().sendMessage(address, len(cmd), str(cmd))</code>
+</mqbfunction>
+
+<mqbfunction>
+<name>HDMI-CEC A/V Volume mute</name>
+<code>from enigma import eHdmiCEC
+import struct
+address = int("5",16)
+cecmessage = int("44",16)
+cecmessagetwo = int("43",16)
+cmd = struct.pack('BB',cecmessage,cecmessagetwo)
+eHdmiCEC.getInstance().sendMessage(address, len(cmd), str(cmd))</code>
 </mqbfunction>
 
 <mqbfunction>
@@ -395,6 +396,102 @@ keyaction.keyPressed("dreambox remote control (native)", 113, int(0))]]></code>
 <name>Remount Network Shares</name>
 <code>from Plugins.SystemPlugins.NetworkBrowser.AutoMount import AutoMount
 AutoMount()</code>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI Panel</name>
+<module>Plugins.SystemPlugins.VTIPanel.plugin</module>
+<screen>VTIMainMenu, self</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI News</name>
+<module>Plugins.SystemPlugins.VTIPanel.plugin</module>
+<screen>VtiNews, self</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI EPG Settings</name>
+<module>Plugins.SystemPlugins.VTIPanel.EPGPanel</module>
+<screen>EPGPanel, self</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI DeviceManager</name>
+<module>Plugins.SystemPlugins.DeviceManager2.plugin</module>
+<screen>DeviceManager2, self</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI CamCenter</name>
+<module>Plugins.SystemPlugins.VTIPanel.plugin</module>
+<screen>CamSelectMenu, self</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI Backup Tools</name>
+<module>Plugins.SystemPlugins.VTIPanel.plugin</module>
+<screen>VTISubMenu,0</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI Image Tools</name>
+<module>Plugins.SystemPlugins.VTIPanel.plugin</module>
+<screen>VTISubMenu,2</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI System Tools</name>
+<module>Plugins.SystemPlugins.VTIPanel.plugin</module>
+<screen>VTISubMenu,3</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI Info Tools</name>
+<module>Plugins.SystemPlugins.VTIPanel.plugin</module>
+<screen>VTISubMenu,4</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI Manual Package Installation</name>
+<module>Plugins.SystemPlugins.VTIPanel.plugin</module>
+<screen>VTISubMenu,1</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI BitrateViewer</name>
+<module>Plugins.SystemPlugins.VTIPanel.plugin</module>
+<screen>BitrateViewer, self</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI System InfoPanel</name>
+<module>Plugins.SystemPlugins.VTIPanel.InfoPanel</module>
+<screen>InfoPanel, self</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI BackupSuite (Restore)</name>
+<module>Plugins.SystemPlugins.VTIPanel.BackupSuite</module>
+<screen>BackupSuite, self, "restore"</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI BackupSuite (Backup)</name>
+<module>Plugins.SystemPlugins.VTIPanel.BackupSuite</module>
+<screen>BackupSuite, self, "backup"</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI CronManager</name>
+<module>Plugins.SystemPlugins.VTIPanel.CronManager</module>
+<screen>CronManager, self</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>VTI ExeManager</name>
+<module>Plugins.SystemPlugins.VTIPanel.ExeManager</module>
+<screen>ExeManager, self</screen>
 </mqbfunction>
 
 <mqbfunction>
@@ -437,6 +534,36 @@ CIGmain(self.session, self.servicelist)]]></code>
 <name>Picture Player</name>
 <module>Plugins.Extensions.PicturePlayer.plugin</module>
 <screen>picshow</screen>
+</mqbfunction>
+
+<mqbfunction>
+<name>Volume -</name>
+<code><![CDATA[from GlobalActions import globalActionMap
+globalActionMap.actions['volumeDown']()]]></code>
+</mqbfunction>
+
+<mqbfunction>
+<name>Volume +</name>
+<code><![CDATA[from GlobalActions import globalActionMap
+globalActionMap.actions['volumeUp']()]]></code>
+</mqbfunction>
+
+<mqbfunction>
+<name>Mute</name>
+<code><![CDATA[from GlobalActions import globalActionMap
+globalActionMap.actions['volumeMute']()]]></code>
+</mqbfunction>
+
+<mqbfunction>
+<name>Power</name>
+<code><![CDATA[from GlobalActions import globalActionMap
+globalActionMap.actions['power_up']()]]></code>
+</mqbfunction>
+
+<mqbfunction>
+<name>Power long</name>
+<code><![CDATA[from GlobalActions import globalActionMap
+globalActionMap.actions['power_long']()]]></code>
 </mqbfunction>
 
 </xml>
